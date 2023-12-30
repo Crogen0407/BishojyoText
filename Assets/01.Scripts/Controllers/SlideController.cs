@@ -5,14 +5,24 @@ using UnityEngine.Events;
 
 public class SlideController : MonoBehaviour
 {
+    public List<Slide> slides;
+
     private int _currentSlide;
+    public SO_CharacterData characterData;
+    
     public int CurrentSlide
     {
         get => _currentSlide;
         set
         {
             _currentSlide = value;
-            onSlideEnable?.Invoke();
+            for (int i = 0; i < characterData.characters.Count; i++)
+            {
+                if (characterData.characters[i].name.Equals(slides[_currentSlide].currentCharacter))
+                {
+                }
+            }
+            slides[_currentSlide].onSlideEnable?.Invoke();
         }
     }
     
@@ -25,7 +35,6 @@ public class SlideController : MonoBehaviour
             _currentSection = value;
         }
     }
-    
-    //Events
-    public UnityEvent onSlideEnable;
+
+   
 }
