@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace Crogen.BishojyoGraph
+namespace Crogen.BishojyoGraph.Editor
 {
     public class BishojyoNode : Node
     {
