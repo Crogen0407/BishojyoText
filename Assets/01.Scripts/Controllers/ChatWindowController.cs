@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Crogen.BishojyoText
+namespace Crogen.BishojyoGraph
 {
     public class ChatWindowController : MonoBehaviour
     {
@@ -15,14 +15,14 @@ namespace Crogen.BishojyoText
         
         public bool isTextComplete;
         
-        private void OnEnable()
+        private void Awake()
         {
             chatWindow = GameObject.Find("ChatWindow").GetComponent<Image>();
             nameText = chatWindow.transform.Find("Name/Text").GetComponent<TextMeshProUGUI>();
             nameText = chatWindow.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         }
     
-        private void ChangeCharacter(string characterName, string text, Color color)
+        public void ChangeChatWindow(string characterName, string text, Color color)
         {
             chatWindow.color = color;
             nameText.text = characterName;

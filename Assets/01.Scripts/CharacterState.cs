@@ -1,4 +1,4 @@
-﻿namespace Crogen.BishojyoText
+﻿namespace Crogen.BishojyoGraph
 {
     public enum CharacterState
     {

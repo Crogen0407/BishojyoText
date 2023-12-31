@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Crogen.BishojyoText
+namespace Crogen.BishojyoGraph
 {
     public class SlideController : MonoBehaviour
     {
@@ -20,7 +20,6 @@ namespace Crogen.BishojyoText
             get => _currentSlide;
             set
             {
-                Debug.Log(value);
                 _currentSlide = value;
                 for (int i = 0; i < characterData.characters.Count; i++)
                 {
@@ -30,7 +29,7 @@ namespace Crogen.BishojyoText
                         characterData.ChangeCharacterState(currentSlide.currentCharacter, currentSlide.characterState);
                     }
                 }
-                scenes[currentSceneCount].slides[_currentSlide].onSlideEnable?.Invoke();
+                scenes[currentSceneCount].slides[_currentSlide].slideEvent.onSlideEnable?.Invoke();
             }
         }
         
@@ -51,12 +50,5 @@ namespace Crogen.BishojyoText
         public List<Slide> slides;
     }
     
-    [Serializable]
-    public class Slide
-    {
-        public UnityEvent onSlideEnable;
-        public string currentCharacter;
-        public CharacterState characterState;
-        public string text;
-    }
+    
 }

@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.TerrainTools;
 using UnityEngine;
 
-namespace Crogen.BishojyoText
+namespace Crogen.BishojyoGraph
 {
     [CreateAssetMenu(fileName = "CharacterData", menuName = "SO/CharacterData")]
     public class SO_CharacterData : ScriptableObject
