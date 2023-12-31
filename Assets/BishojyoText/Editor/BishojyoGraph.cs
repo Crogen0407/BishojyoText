@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Crogen.BishojyoGraph;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -50,14 +49,14 @@ namespace Crogen.BishojyoGraph.Editor
             {
                 title = "Start", 
                 GUID = Guid.NewGuid().ToString(),
-                slide = new Slide
+                Slide = new Slide
                 {
                     text = "",
                     currentCharacter = "",
                     characterState = CharacterState.Normal,
                     slideEvent = null
                 },
-                enterPoint = true
+                EntryPoint = true
             };
             var generatePort = GeneratePort(node, Direction.Output);
             generatePort.portName = "Next";
@@ -69,18 +68,58 @@ namespace Crogen.BishojyoGraph.Editor
             return node;
         }
     
-        private void AddChoicePort(BishojyoNode node)
+        public void AddChoicePort(BishojyoNode bishojyoNode, string overriddenPortName = "")
         {
-            var generatePort = GeneratePort(node, Direction.Output);
+            var generatePort = GeneratePort(bishojyoNode, Direction.Output);
+
+            var oldLabel = generatePort.contentContainer.Q<Label>("type");
+            generatePort.contentContainer.Remove(oldLabel);
             
-            int outputPortCount = node.outputContainer.Query("connector").ToList().Count;
+            int outputPortCount = bishojyoNode.outputContainer.Query("connector").ToList().Count;
             generatePort.portName = $"Choice {outputPortCount}";
-            
-            node.outputContainer.Add(generatePort);
-            node.RefreshPorts();
-            node.RefreshExpandedState();
+
+            var choicePortName = string.IsNullOrEmpty(overriddenPortName)
+                ? $"Choice{outputPortCount + 1}"
+                : overriddenPortName;
+
+            var textField = new TextField
+            {
+                name = string.Empty,
+                value = choicePortName
+            };
+            textField.RegisterValueChangedCallback(evt => generatePort.portName = evt.newValue);
+            generatePort.contentContainer.Add(new Label("  "));
+            generatePort.contentContainer.Add(textField);
+            var deleteButton = new Button(() => RemovePort(bishojyoNode, generatePort))
+            {
+                text = "X"
+            };
+            generatePort.contentContainer.Add(deleteButton);
+                    
+            generatePort.portName = choicePortName;
+            bishojyoNode.outputContainer.Add(generatePort);
+            bishojyoNode.RefreshPorts();
+            bishojyoNode.RefreshExpandedState();
         }
-    
+
+        private void RemovePort(BishojyoNode bishojyoNode, Port generatePort)
+        {
+            var targetEdge = edges.ToList().Where(x =>
+                x.output.portName == generatePort.portName && x.output.node == generatePort.node);
+
+            if (!targetEdge.Any())
+            {
+                    Debug.Log(targetEdge.Count());
+                var edge = targetEdge.First();
+                edge.input.Disconnect(edge);
+                RemoveElement(targetEdge.First());
+            }
+            
+            bishojyoNode.outputContainer.Remove(generatePort);
+            bishojyoNode.RefreshPorts();
+            bishojyoNode.RefreshExpandedState();
+        }
+
         public void CreateNode(string nodeName, Vector2 position)
         {
             AddElement(CreateBishojyoNode(nodeName, position));
@@ -92,14 +131,14 @@ namespace Crogen.BishojyoGraph.Editor
             {
                 title = nodeName,
                 GUID = Guid.NewGuid().ToString(),
-                slide = new Slide
+                Slide = new Slide
                 {
                     text = nodeName,
                     currentCharacter = "",
                     characterState = CharacterState.Normal,
                     slideEvent = null
                 },
-                enterPoint = true
+                EntryPoint = false
             };
             var inputPort = GeneratePort(bishojyoNode, Direction.Input, Port.Capacity.Multi);
             inputPort.portName = "Input";

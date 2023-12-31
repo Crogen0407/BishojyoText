@@ -7,7 +7,7 @@ namespace Crogen.BishojyoGraph.RunTime
     public class BishojyoNodeData
     {
         public string GUID;
-        public string BishojyoText;
+        public Slide Slide;
         public Vector2 Position;
     }
 }

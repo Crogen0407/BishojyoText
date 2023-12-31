@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5239c50f14564477b496508dfd69766c, type: 3}
+  m_Name: sdfsdfsf
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGUID: 02aa3272-67f6-4b54-8cbe-d9c2798cd7f1
+    PortName: Next
+    TargetNodeGUID: 680c01fa-e59f-4a32-810e-4a46f468b367
+  - BaseNodeGUID: 680c01fa-e59f-4a32-810e-4a46f468b367
+    PortName: Choice1
+    TargetNodeGUID: 0027d587-a235-4b65-b625-11c634a72c5d
+  BishojyoNodeDatas:
+  - GUID: 680c01fa-e59f-4a32-810e-4a46f468b367
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: Bishojyo Node
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 254, y: 354}
+  - GUID: 0027d587-a235-4b65-b625-11c634a72c5d
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: Bishojyo Node
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 573, y: 354}

@@ -8,7 +8,7 @@ namespace Crogen.BishojyoGraph.Editor
     public class BishojyoNode : Node
     {
         public string GUID;
-        public Slide slide;
-        public bool enterPoint = false;
+        public Slide Slide;
+        public bool EntryPoint = false;
     }
 }

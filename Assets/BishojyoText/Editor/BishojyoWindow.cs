@@ -42,14 +42,6 @@ namespace Crogen.BishojyoGraph.Editor
             rootVisualElement.Add(_graphview);
         }
     
-        public Rect windowRect = new Rect(10, 30, 200, 200);
-    
-        void DoWindow(int unusedWindowID)
-        {
-            GUILayout.Button("Hi");
-            GUI.DragWindow();
-        }
-        
         private void GenerateToolbar()
         {
             var toolbar = new Toolbar();
