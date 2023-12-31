@@ -5,44 +5,49 @@ using UnityEditor;
 using UnityEditor.TerrainTools;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CharacterData", menuName = "SO/CharacterData")]
-public class SO_CharacterData : ScriptableObject
+namespace Crogen.BishojyoText
 {
-    public List<Character> characters;
-    
-    public void ChangeCharacterState(string characterName, CharacterState characterState)
+    [CreateAssetMenu(fileName = "CharacterData", menuName = "SO/CharacterData")]
+    public class SO_CharacterData : ScriptableObject
     {
-        for (int i = 0; i < characters.Count; i++)
+        public List<Character> characters;
+    
+        public void ChangeCharacterState(string characterName, CharacterState characterState)
         {
-            if (characters[i].name.Equals(characterName))
+            for (int i = 0; i < characters.Count; i++)
             {
-                characters[i].characterState = characterState;
-                break;
+                if (characters[i].name.Equals(characterName))
+                {
+                    characters[i].characterState = characterState;
+                    break;
+                }
             }
         }
     }
+
+    [Serializable]
+    public class Character
+    {
+        public string name;
+        public CharacterState characterState;
+        public Color mainColor;
+        public Vector3 position;
+        public CharacterSprite sprites;
+    }
+
+    [Serializable]
+    public class CharacterSprite
+    {
+        public Sprite normal;
+        public Sprite angry;
+        public Sprite sad;
+        public Sprite ashamed;
+        public Sprite happy;
+        public Sprite jealousy;
+        public Sprite mischievous;
+        public Sprite thoughtful;
+        public Sprite refreshed;
+        public Sprite scared;
+    }
 }
 
-[Serializable]
-public class Character
-{
-    public string name;
-    public CharacterState characterState;
-    public Color mainColor;
-    public CharacterSprite sprites;
-}
-
-[Serializable]
-public class CharacterSprite
-{
-    public Sprite normal;
-    public Sprite angry;
-    public Sprite sad;
-    public Sprite ashamed;
-    public Sprite happy;
-    public Sprite jealousy;
-    public Sprite mischievous;
-    public Sprite thoughtful;
-    public Sprite refreshed;
-    public Sprite scared;
-}

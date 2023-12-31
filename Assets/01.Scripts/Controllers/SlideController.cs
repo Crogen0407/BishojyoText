@@ -4,56 +4,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SlideController : MonoBehaviour
+namespace Crogen.BishojyoText
 {
-    public List<Scene> scenes;
-    public int currentSceneCount;
-    
-    public SO_CharacterData characterData;
-    
-    private int _currentSlide;
-    
-    public int CurrentSlide
+    public class SlideController : MonoBehaviour
     {
-        get => _currentSlide;
-        set
+        public List<Scene> scenes;
+        public int currentSceneCount;
+        
+        public SO_CharacterData characterData;
+        
+        private int _currentSlide;
+        
+        public int CurrentSlide
         {
-            Debug.Log(value);
-            _currentSlide = value;
-            for (int i = 0; i < characterData.characters.Count; i++)
+            get => _currentSlide;
+            set
             {
-                Slide currentSlide = scenes[currentSceneCount].slides[_currentSlide];
-                if (characterData.characters[i].name.Equals(currentSlide.currentCharacter))
+                Debug.Log(value);
+                _currentSlide = value;
+                for (int i = 0; i < characterData.characters.Count; i++)
                 {
-                    characterData.ChangeCharacterState(currentSlide.currentCharacter, currentSlide.characterState);
+                    Slide currentSlide = scenes[currentSceneCount].slides[_currentSlide];
+                    if (characterData.characters[i].name.Equals(currentSlide.currentCharacter))
+                    {
+                        characterData.ChangeCharacterState(currentSlide.currentCharacter, currentSlide.characterState);
+                    }
                 }
+                scenes[currentSceneCount].slides[_currentSlide].onSlideEnable?.Invoke();
             }
-            scenes[currentSceneCount].slides[_currentSlide].onSlideEnable?.Invoke();
+        }
+        
+        private int _currentSection;
+        public int CurrentSection
+        {
+            get => _currentSection;
+            set
+            {
+                _currentSection = value;
+            }
         }
     }
     
-    private int _currentSection;
-    public int CurrentSection
+    [Serializable]
+    public class Scene
     {
-        get => _currentSection;
-        set
-        {
-            _currentSection = value;
-        }
+        public List<Slide> slides;
     }
-}
-
-[Serializable]
-public class Scene
-{
-    public List<Slide> slides;
-}
-
-[Serializable]
-public class Slide
-{
-    public UnityEvent onSlideEnable;
-    public string currentCharacter;
-    public CharacterState characterState;
-    public string text;
+    
+    [Serializable]
+    public class Slide
+    {
+        public UnityEvent onSlideEnable;
+        public string currentCharacter;
+        public CharacterState characterState;
+        public string text;
+    }
 }

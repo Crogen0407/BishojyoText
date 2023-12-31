@@ -4,40 +4,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StoryManager : MonoSingleton<StoryManager>
+namespace Crogen.BishojyoText
 {
-    //Controllers
-    public SlideController SlideController { get; private set; }
-
-    private void Init()
+    public class StoryManager : MonoSingleton<StoryManager>
     {
-        SlideController = FindObjectOfType<SlideController>();
-    }
+        //Controllers
+        public SlideController SlideController { get; private set; }
+
+        private void Init()
+        {
+            SlideController = FindObjectOfType<SlideController>();
+        }
 
 
-    private void Awake()
-    {
-        Init();
-    }
-
-    private void Start()
-    {
-        SceneManager.sceneLoaded += (arg0, mode) =>
+        private void Awake()
         {
             Init();
-        };
-    }
+        }
 
-    private void OnDestroy()
-    {
-        
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        private void Start()
         {
-            SlideController.CurrentSlide++;
+            SceneManager.sceneLoaded += (arg0, mode) =>
+            {
+                Init();
+            };
+        }
+
+        private void OnDestroy()
+        {
+        
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                SlideController.CurrentSlide++;
+            }
         }
     }
 }
