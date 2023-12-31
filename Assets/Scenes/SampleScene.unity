@@ -1175,33 +1175,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea59ff300b08a2244818ab0979d40e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slides:
-  - onSlideEnable:
-      m_PersistentCalls:
-        m_Calls: []
-    currentCharacter: 
-    text: 
-  - onSlideEnable:
-      m_PersistentCalls:
-        m_Calls: []
-    currentCharacter: 
-    text: 
-  - onSlideEnable:
-      m_PersistentCalls:
-        m_Calls: []
-    currentCharacter: 
-    text: 
-  - onSlideEnable:
-      m_PersistentCalls:
-        m_Calls: []
-    currentCharacter: 
-    text: 
-  - onSlideEnable:
-      m_PersistentCalls:
-        m_Calls: []
-    currentCharacter: 
-    text: 
-  characterData: {fileID: 0}
+  scenes:
+  - slides:
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: "\uC2DC\uB85C\uCF54"
+      characterState: 0
+      text: "\uB3D9\uD574\uBB3C\uACFC \uBC31\uB450\uC0B0\uC774 \uB9C8\uB974\uACE0
+        \uB2F3\uB3C4\uB85D"
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+  - slides:
+    - onSlideEnable:
+        m_PersistentCalls:
+          m_Calls: []
+      currentCharacter: 
+      characterState: 0
+      text: 
+  currentSceneCount: 0
+  characterData: {fileID: 11400000, guid: 2d3b3c4c2d38a3246951d49f3aec1c76, type: 2}
 --- !u!1 &1121520178
 GameObject:
   m_ObjectHideFlags: 0

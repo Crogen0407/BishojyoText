@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: CharacterData
   m_EditorClassIdentifier: 
   characters:
-  - name: 
+  - name: "\uC2DC\uB85C\uCF54"
     characterState: 0
-    mainColor: {r: 0, g: 0, b: 0, a: 0}
+    mainColor: {r: 0, g: 0.51996565, b: 1, a: 1}
+  - name: "\uC544\uB8E8"
+    characterState: 0
+    mainColor: {r: 0.8396226, g: 0.43301287, b: 0.5179092, a: 1}
