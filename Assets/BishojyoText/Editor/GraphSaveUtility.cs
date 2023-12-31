@@ -31,7 +31,8 @@ namespace Crogen.BishojyoGraph.Editor
                 
                 bishojyoContainer.NodeLinks.Add(new NodeLinkData
                 {
-                    BaseNodeGUID = outputNode.GUID;
+                    BaseNodeGUID = outputNode.GUID
+                    
                 });
             }
         }
