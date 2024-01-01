@@ -109,7 +109,7 @@ namespace Crogen.BishojyoGraph.Editor
 
             if (!targetEdge.Any())
             {
-                    Debug.Log(targetEdge.Count());
+                Debug.Log(targetEdge.Count());
                 var edge = targetEdge.First();
                 edge.input.Disconnect(edge);
                 RemoveElement(targetEdge.First());

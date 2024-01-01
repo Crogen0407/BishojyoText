@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5239c50f14564477b496508dfd69766c, type: 3}
+  m_Name: New Narrativ1e
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGUID: 775acd78-b6c3-4ed4-ad1d-cc3d899efc4c
+    PortName: Next
+    TargetNodeGUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+  - BaseNodeGUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+    PortName: Choice1
+    TargetNodeGUID: b6da450b-70b7-446a-9ad8-21c531eb4a9d
+  - BaseNodeGUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+    PortName: Choice2
+    TargetNodeGUID: c6cb8d84-31d0-4250-8ed8-caaf68f3e016
+  - BaseNodeGUID: b6da450b-70b7-446a-9ad8-21c531eb4a9d
+    PortName: Choice2
+    TargetNodeGUID: eb166a20-403c-44ca-9947-8523b431b78d
+  - BaseNodeGUID: c6cb8d84-31d0-4250-8ed8-caaf68f3e016
+    PortName: Choice2
+    TargetNodeGUID: eb166a20-403c-44ca-9947-8523b431b78d
+  BishojyoNodeDatas:
+  - GUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: Bishojyo Node
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 270, y: 229}
+  - GUID: c6cb8d84-31d0-4250-8ed8-caaf68f3e016
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: Bishojyo Node
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 530, y: 325}
+  - GUID: eb166a20-403c-44ca-9947-8523b431b78d
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: Bishojyo Node
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 867, y: 248}
+  - GUID: b6da450b-70b7-446a-9ad8-21c531eb4a9d
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: Bishojyo Node
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 530, y: 104}
