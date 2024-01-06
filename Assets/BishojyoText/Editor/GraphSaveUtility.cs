@@ -109,8 +109,9 @@ namespace Crogen.BishojyoGraph.Editor
         {
             foreach (var nodeData in _containerCache.BishojyoNodeDatas)
             {
-                var tempNode = _targetGraph.CreateBishojyoNode("Bishojyo Node", Vector2.zero);
+                var tempNode = _targetGraph.CreateBishojyoNode("Bishojyo Node", nodeData.Slide, Vector2.zero);
                 tempNode.GUID = nodeData.GUID;
+                tempNode.Slide = nodeData.Slide;
                 _targetGraph.AddElement(tempNode);
 
                 var nodePorts = _containerCache.NodeLinks.Where(x => x.BaseNodeGUID == nodeData.GUID).ToList();

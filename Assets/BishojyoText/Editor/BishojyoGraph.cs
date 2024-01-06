@@ -10,9 +10,12 @@ namespace Crogen.BishojyoGraph.Editor
     public class BishojyoGraph : GraphView
     {
         public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
+
+        private NodeSearchWIndow _searchWindow;
         
         public BishojyoGraph()
         {
+            styleSheets.Add((Resources.Load<StyleSheet>("BishojyoGraph")));
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
             
             this.AddManipulator(new ContentDragger());
@@ -23,8 +26,16 @@ namespace Crogen.BishojyoGraph.Editor
             Insert(0, grid);
             grid.StretchToParentSize();
             AddElement(GenerateEntryPointNode());
+            AddSearchWindow();
         }
-    
+
+        private void AddSearchWindow()
+        {
+            _searchWindow = ScriptableObject.CreateInstance<NodeSearchWIndow>();
+            nodeCreationRequest = context =>
+                SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
+        }
+
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
             var compatiblePorts = new List<Port>();
@@ -62,9 +73,13 @@ namespace Crogen.BishojyoGraph.Editor
             var generatePort = GeneratePort(node, Direction.Output);
             generatePort.portName = "Next";
             node.outputContainer.Add(generatePort);
+
+            node.capabilities &= ~Capabilities.Movable;
+            node.capabilities &= ~Capabilities.Deletable;
             
             node.RefreshExpandedState();
             node.RefreshPorts();
+            
             node.SetPosition(new Rect(100, 200, 100, 150));
             return node;
         }
@@ -121,34 +136,39 @@ namespace Crogen.BishojyoGraph.Editor
             bishojyoNode.RefreshExpandedState();
         }
 
-        public void CreateNode(string nodeName, Vector2 position)
+        public void CreateNode(string nodeName, Slide slide, Vector2 position)
         {
-            AddElement(CreateBishojyoNode(nodeName, position));
+            AddElement(CreateBishojyoNode(nodeName, slide, position));
         }
         
-        public BishojyoNode CreateBishojyoNode(string nodeName, Vector2 position)
+        public BishojyoNode CreateBishojyoNode(string nodeName, Slide slide, Vector2 position)
         {
             var bishojyoNode = new BishojyoNode
             {
                 title = nodeName,
                 GUID = Guid.NewGuid().ToString(),
-                Slide = new Slide
-                {
-                    text = nodeName,
-                    currentCharacter = "",
-                    characterState = CharacterState.Normal,
-                    slideEvent = null
-                },
+                Slide = slide,
                 EntryPoint = false
             };
             var inputPort = GeneratePort(bishojyoNode, Direction.Input, Port.Capacity.Multi);
             inputPort.portName = "Input";
             bishojyoNode.inputContainer.Add(inputPort);
             
+            bishojyoNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+            
             var button = new Button(() => { AddChoicePort(bishojyoNode);});
             button.text = "New Choice";
             bishojyoNode.titleContainer.Add(button);
-    
+
+            var textField = new TextField(string.Empty);
+            textField.RegisterValueChangedCallback(evt =>
+            {
+                bishojyoNode.Slide.text = evt.newValue;
+                bishojyoNode.title = evt.newValue;
+            });
+            textField.SetValueWithoutNotify(bishojyoNode.Slide.text);
+            bishojyoNode.mainContainer.Add(textField);
+            
             bishojyoNode.RefreshExpandedState();
             bishojyoNode.RefreshPorts();
             bishojyoNode.SetPosition(new Rect(position, defaultNodeSize));

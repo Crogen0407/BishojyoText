@@ -26,8 +26,19 @@ namespace Crogen.BishojyoGraph.Editor
         {
             ConstructGraphView();
             GenerateToolbar();
+            GenerateMiniMap();
         }
-    
+
+        private void GenerateMiniMap()
+        {
+            var miniMap = new MiniMap
+            {
+                anchored = true
+            };
+            miniMap.SetPosition(new Rect(10, 30, 200, 140));
+            _graphview.Add(miniMap);
+        }
+
         private void OnDisable()
         {
             rootVisualElement.Remove(_graphview);
@@ -69,7 +80,12 @@ namespace Crogen.BishojyoGraph.Editor
             
             var nodeCreateButton = new Button(() =>
             {
-                _graphview.CreateNode("Bishojyo Node", Vector2.zero);
+                _graphview.CreateNode("Bishojyo Node", new Slide
+                {
+                    text = string.Empty,
+                    characterState = CharacterState.Normal,
+                    currentCharacter = ""
+                }, Vector2.zero);
             });
             nodeCreateButton.text = "Create Node";
             toolbar.Add(nodeCreateButton);
