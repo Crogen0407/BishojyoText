@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Crogen.BishojyoGraph.RunTime;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -27,15 +28,31 @@ namespace Crogen.BishojyoGraph.Editor
             ConstructGraphView();
             GenerateToolbar();
             GenerateMiniMap();
+            GenerateBlackBoard();
+        }
+
+        private void GenerateBlackBoard()
+        {
+            var blackboard = new Blackboard(_graphview);
+            blackboard.Add(new BlackboardSection
+            {
+                title = "Exposed Properties"
+            });
+            blackboard.addItemRequested = blackboard1 =>
+            {
+                _graphview.AddPropertyToBlackBoard(new ExposedProperty());
+            };
+            blackboard.SetPosition(new Rect(10, 30, 200, 300));
+            _graphview.Add(blackboard);
+            _graphview.Blackboard = blackboard;
         }
 
         private void GenerateMiniMap()
         {
-            var miniMap = new MiniMap
-            {
-                anchored = true
-            };
-            miniMap.SetPosition(new Rect(10, 30, 200, 140));
+            var miniMap = new MiniMap{anchored = true};
+            //This will give 10px offset from left side
+            var cords = _graphview.contentViewContainer.WorldToLocal(new Vector2(this.maxSize.x - 10, 30));
+            miniMap.SetPosition(new Rect(cords.x, cords.y, 200, 140));
             _graphview.Add(miniMap);
         }
 
@@ -46,7 +63,7 @@ namespace Crogen.BishojyoGraph.Editor
     
         private void ConstructGraphView()
         {
-            _graphview = new BishojyoGraph
+            _graphview = new BishojyoGraph(this)
             {
                 name = "BishojyoGraph"
             };

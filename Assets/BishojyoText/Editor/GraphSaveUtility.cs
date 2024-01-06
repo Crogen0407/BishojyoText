@@ -109,6 +109,7 @@ namespace Crogen.BishojyoGraph.Editor
         {
             foreach (var nodeData in _containerCache.BishojyoNodeDatas)
             {
+                //We pass position later on, so we can just use vec2 zero for now as position while loading nodes.
                 var tempNode = _targetGraph.CreateBishojyoNode("Bishojyo Node", nodeData.Slide, Vector2.zero);
                 tempNode.GUID = nodeData.GUID;
                 tempNode.Slide = nodeData.Slide;

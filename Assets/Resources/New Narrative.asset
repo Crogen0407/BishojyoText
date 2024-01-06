@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: New Narrative
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGUID: cdaa52a7-c033-4838-b734-3424a46fcc2f
+  - BaseNodeGUID: b7e5c14d-ad6e-44ab-9366-89b32be81693
     PortName: Next
-    TargetNodeGUID: 903e4136-4db9-4cbf-b44e-234668fc2584
+    TargetNodeGUID: b82a9cd1-4368-46d2-80ae-24fe8d82acc8
   BishojyoNodeDatas:
-  - GUID: 903e4136-4db9-4cbf-b44e-234668fc2584
+  - GUID: b82a9cd1-4368-46d2-80ae-24fe8d82acc8
     Slide:
       currentCharacter: 
       characterState: 0
-      text: "\uD638\u3157\u3157\u3157\u3157\u3157\u3157\u3157"
+      text: 
       slideEvent:
         onSlideEnable:
           m_PersistentCalls:
@@ -29,4 +29,4 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 269.33334, y: 82.666664}
+    Position: {x: 290.66666, y: 179.33334}

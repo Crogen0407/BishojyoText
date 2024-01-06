@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Crogen.BishojyoGraph.RunTime;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,10 +12,11 @@ namespace Crogen.BishojyoGraph.Editor
     public class BishojyoGraph : GraphView
     {
         public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
-
+        public Blackboard Blackboard;
+        public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
         private NodeSearchWIndow _searchWindow;
         
-        public BishojyoGraph()
+        public BishojyoGraph(EditorWindow window)
         {
             styleSheets.Add((Resources.Load<StyleSheet>("BishojyoGraph")));
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
@@ -26,12 +29,13 @@ namespace Crogen.BishojyoGraph.Editor
             Insert(0, grid);
             grid.StretchToParentSize();
             AddElement(GenerateEntryPointNode());
-            AddSearchWindow();
+            AddSearchWindow(window);
         }
 
-        private void AddSearchWindow()
+        private void AddSearchWindow(EditorWindow window)
         {
             _searchWindow = ScriptableObject.CreateInstance<NodeSearchWIndow>();
+            _searchWindow.Init(window, this);
             nodeCreationRequest = context =>
                 SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
         }
@@ -141,7 +145,7 @@ namespace Crogen.BishojyoGraph.Editor
             AddElement(CreateBishojyoNode(nodeName, slide, position));
         }
         
-        public BishojyoNode CreateBishojyoNode(string nodeName, Slide slide, Vector2 position)
+        public BishojyoNode  CreateBishojyoNode(string nodeName, Slide slide, Vector2 position)
         {
             var bishojyoNode = new BishojyoNode
             {
@@ -174,6 +178,37 @@ namespace Crogen.BishojyoGraph.Editor
             bishojyoNode.SetPosition(new Rect(position, defaultNodeSize));
     
             return bishojyoNode;
+        }
+        
+        public void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
+        {
+            var property = new ExposedProperty();
+            property.PropertyName = exposedProperty.PropertyName;
+            property.PropertyValue = exposedProperty.PropertyValue;
+            
+            ExposedProperties.Add(property);
+
+            var container = new VisualElement();
+            var blackboardField = new BlackboardField
+            {
+                text = property.PropertyName,
+                typeText = "string"
+            };
+            container.Add(blackboardField);
+
+            var propertyValueTextField = new TextField("Value:")
+            {
+                value = property.PropertyValue
+            };
+            propertyValueTextField.RegisterValueChangedCallback(evt =>
+            {
+                var changingPropertyIndex = ExposedProperties.FindIndex(x => x.PropertyName == property.PropertyName);
+                ExposedProperties[changingPropertyIndex].PropertyValue = evt.newValue;
+            });
+            var blackBoardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
+            contentContainer.Add(blackBoardValueRow);
+                
+            Blackboard.Add(container);
         }
     }
 }
