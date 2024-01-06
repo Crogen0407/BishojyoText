@@ -10,26 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5239c50f14564477b496508dfd69766c, type: 3}
-  m_Name: New Narrativ1e
+  m_Name: stroy1
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGUID: 775acd78-b6c3-4ed4-ad1d-cc3d899efc4c
+  - BaseNodeGUID: 94b0aff1-215c-4db7-b6bb-7cff4e08b58b
     PortName: Next
-    TargetNodeGUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
-  - BaseNodeGUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+    TargetNodeGUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
+  - BaseNodeGUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
     PortName: Choice1
-    TargetNodeGUID: b6da450b-70b7-446a-9ad8-21c531eb4a9d
-  - BaseNodeGUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+    TargetNodeGUID: 3220fabb-20b0-4425-8823-a5f5f8e1da22
+  - BaseNodeGUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
+    PortName: Choice1
+    TargetNodeGUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
+  - BaseNodeGUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
     PortName: Choice2
-    TargetNodeGUID: c6cb8d84-31d0-4250-8ed8-caaf68f3e016
-  - BaseNodeGUID: b6da450b-70b7-446a-9ad8-21c531eb4a9d
+    TargetNodeGUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
+  - BaseNodeGUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
+    PortName: Choice1
+    TargetNodeGUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
+  - BaseNodeGUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
     PortName: Choice2
-    TargetNodeGUID: eb166a20-403c-44ca-9947-8523b431b78d
-  - BaseNodeGUID: c6cb8d84-31d0-4250-8ed8-caaf68f3e016
-    PortName: Choice2
-    TargetNodeGUID: eb166a20-403c-44ca-9947-8523b431b78d
+    TargetNodeGUID: 3220fabb-20b0-4425-8823-a5f5f8e1da22
   BishojyoNodeDatas:
-  - GUID: 10e5ff08-42e7-488c-9948-9b60f249f63c
+  - GUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
     Slide:
       currentCharacter: 
       characterState: 0
@@ -41,8 +44,8 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 270, y: 229}
-  - GUID: c6cb8d84-31d0-4250-8ed8-caaf68f3e016
+    Position: {x: 356.66666, y: 327.3333}
+  - GUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
     Slide:
       currentCharacter: 
       characterState: 0
@@ -54,8 +57,8 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 530, y: 325}
-  - GUID: eb166a20-403c-44ca-9947-8523b431b78d
+    Position: {x: 936.6667, y: 200}
+  - GUID: 3220fabb-20b0-4425-8823-a5f5f8e1da22
     Slide:
       currentCharacter: 
       characterState: 0
@@ -67,8 +70,8 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 867, y: 248}
-  - GUID: b6da450b-70b7-446a-9ad8-21c531eb4a9d
+    Position: {x: 1176, y: 300}
+  - GUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
     Slide:
       currentCharacter: 
       characterState: 0
@@ -80,4 +83,4 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 530, y: 104}
+    Position: {x: 598.6667, y: 200}

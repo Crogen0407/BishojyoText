@@ -18,8 +18,10 @@ namespace Crogen.BishojyoGraph.Editor
         {
             var window = GetWindow<BishojyoWindow>();
             window.titleContent = new GUIContent("BishojyoGraph");
+            
         }
-    
+
+        private VisualElement.Hierarchy _hierarchy;
         private void OnEnable()
         {
             ConstructGraphView();
