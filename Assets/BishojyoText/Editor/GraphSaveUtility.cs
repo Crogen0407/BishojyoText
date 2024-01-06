@@ -25,9 +25,22 @@ namespace Crogen.BishojyoGraph.Editor
 
         public void SaveGraph(string fileName)
         {
-            if(!Edges.Any()) return; //if there are no edges(no connections) then return
-
             var bishojyoContainer = ScriptableObject.CreateInstance<BishojyoContainer>();
+            if (!SaveNodes(bishojyoContainer)) return;
+            SaveExposedProperties(bishojyoContainer);
+            
+
+            //Auto creates resources folder if it doesn't exist
+            if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+                AssetDatabase.CreateFolder("Assets", "Resources");
+            
+            AssetDatabase.CreateAsset(bishojyoContainer, $"Assets/Resources/{fileName}.asset");
+            AssetDatabase.SaveAssets();
+        }
+
+        private bool SaveNodes(BishojyoContainer bishojyoContainer)
+        {
+            if(!Edges.Any()) return false; //if there are no edges(no connections) then return
 
             var connectedPorts = Edges.Where(x => x.input.node != null).ToArray();
             for (int i = 0; i < connectedPorts.Length; i++)
@@ -53,13 +66,14 @@ namespace Crogen.BishojyoGraph.Editor
                 });                
             }
 
-            //Auto creates resources folder if it doesn't exist
-            if (!AssetDatabase.IsValidFolder("Assets/Resources"))
-                AssetDatabase.CreateFolder("Assets", "Resources");
-            AssetDatabase.CreateAsset(bishojyoContainer, $"Assets/Resources/{fileName}.asset");
-            AssetDatabase.SaveAssets();
+            return true;
         }
 
+        private void SaveExposedProperties(BishojyoContainer bishojyoContainer)
+        {
+            bishojyoContainer.ExposedProperties.AddRange(_targetGraph.ExposedProperties);
+        }
+        
         public void LoadGraph(string fileName)
         {
             _containerCache = Resources.Load<BishojyoContainer>(fileName);
@@ -72,6 +86,18 @@ namespace Crogen.BishojyoGraph.Editor
             ClearGraph();
             CreateNodes();
             ConnectNodes();
+            CreateExposedProperties();
+        }
+
+        private void CreateExposedProperties()
+        {
+            //Clear existing properties on hot-reload
+            _targetGraph.ClearBlackBoardAndExposedProperties();
+            //Add properties from data.
+            foreach (var exposedProperty in _containerCache.ExposedProperties)
+            {
+                _targetGraph.AddPropertyToBlackBoard(exposedProperty);
+            }
         }
 
         private void ConnectNodes()

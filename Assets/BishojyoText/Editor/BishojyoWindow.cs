@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Crogen.BishojyoGraph.RunTime;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Rendering;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -41,6 +43,20 @@ namespace Crogen.BishojyoGraph.Editor
             blackboard.addItemRequested = blackboard1 =>
             {
                 _graphview.AddPropertyToBlackBoard(new ExposedProperty());
+            };
+            blackboard.editTextRequested = (blackboard1, element, newValue) =>
+            {
+                var oldPropertyName = ((BlackboardField)element).text;
+                if (_graphview.ExposedProperties.Any(x => x.PropertyName == newValue))
+                {
+                    EditorUtility.DisplayDialog("Error", "This property name already exists, please chose another one!",
+                        "OK");
+                    return;
+                }
+
+                var propertyIndex = _graphview.ExposedProperties.FindIndex(x => x.PropertyName == oldPropertyName);
+                _graphview.ExposedProperties[propertyIndex].PropertyName = newValue;
+                ((BlackboardField)element).text = newValue;
             };
             blackboard.SetPosition(new Rect(10, 30, 200, 300));
             _graphview.Add(blackboard);

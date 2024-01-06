@@ -9,5 +9,6 @@ namespace Crogen.BishojyoGraph.RunTime
     {
         public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
         public List<BishojyoNodeData> BishojyoNodeDatas = new List<BishojyoNodeData>();
+        public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
     }
 }

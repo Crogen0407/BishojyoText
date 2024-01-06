@@ -30,3 +30,10 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls: []
     Position: {x: 290.66666, y: 179.33334}
+  ExposedProperties:
+  - PropertyName: New String
+    PropertyValue: New Value
+  - PropertyName: New String(1)
+    PropertyValue: New Value
+  - PropertyName: New String(1)(1)
+    PropertyValue: New Value

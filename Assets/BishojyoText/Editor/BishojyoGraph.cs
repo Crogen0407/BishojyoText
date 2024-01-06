@@ -179,26 +179,33 @@ namespace Crogen.BishojyoGraph.Editor
     
             return bishojyoNode;
         }
+
+        public void ClearBlackBoardAndExposedProperties()
+        {
+            ExposedProperties.Clear();
+            Blackboard.Clear(); //Yes, blackboard can clean itself!
+        }
         
         public void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
         {
+            var localPropertyName = exposedProperty.PropertyName;
+            var localPropertyValue = exposedProperty.PropertyValue;
+            while (ExposedProperties.Any(x => x.PropertyName == localPropertyName))
+                localPropertyName = $"{localPropertyName}(1)"; //USERNAME(1) || USERNAME(1)(1)(1) ETC...
+            
             var property = new ExposedProperty();
-            property.PropertyName = exposedProperty.PropertyName;
-            property.PropertyValue = exposedProperty.PropertyValue;
+            property.PropertyName =localPropertyName;
+            property.PropertyValue = localPropertyValue;
             
             ExposedProperties.Add(property);
 
             var container = new VisualElement();
-            var blackboardField = new BlackboardField
-            {
-                text = property.PropertyName,
-                typeText = "string"
-            };
+            var blackboardField = new BlackboardField { text = property.PropertyName, typeText = "string" };
             container.Add(blackboardField);
 
             var propertyValueTextField = new TextField("Value:")
             {
-                value = property.PropertyValue
+                value = localPropertyValue
             };
             propertyValueTextField.RegisterValueChangedCallback(evt =>
             {
@@ -206,7 +213,7 @@ namespace Crogen.BishojyoGraph.Editor
                 ExposedProperties[changingPropertyIndex].PropertyValue = evt.newValue;
             });
             var blackBoardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
-            contentContainer.Add(blackBoardValueRow);
+            container.Add(blackBoardValueRow);
                 
             Blackboard.Add(container);
         }
