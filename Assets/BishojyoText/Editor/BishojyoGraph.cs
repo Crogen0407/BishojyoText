@@ -103,12 +103,12 @@ namespace Crogen.BishojyoGraph.Editor
             bishojyoNode.RefreshExpandedState();
         }
 
-        private void RemovePort(BishojyoNode bishojyoNode, Port generatePort)
+        private void RemovePort(BishojyoNode bishojyoNode, Port generatedPort)
         {
             var targetEdge = edges.ToList().Where(x =>
-                x.output.portName == generatePort.portName && x.output.node == generatePort.node);
+                x.output.portName == generatedPort.portName && x.output.node == generatedPort.node);
 
-            if (!targetEdge.Any())
+            if (targetEdge.Any())
             {
                 Debug.Log(targetEdge.Count());
                 var edge = targetEdge.First();
@@ -116,7 +116,7 @@ namespace Crogen.BishojyoGraph.Editor
                 RemoveElement(targetEdge.First());
             }
             
-            bishojyoNode.outputContainer.Remove(generatePort);
+            bishojyoNode.outputContainer.Remove(generatedPort);
             bishojyoNode.RefreshPorts();
             bishojyoNode.RefreshExpandedState();
         }

@@ -13,26 +13,14 @@ MonoBehaviour:
   m_Name: New Narrative
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGUID: 94b0aff1-215c-4db7-b6bb-7cff4e08b58b
+  - BaseNodeGUID: 56fe460d-5ead-46d9-b288-5acc59574dfb
     PortName: Next
-    TargetNodeGUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
-  - BaseNodeGUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
-    PortName: Choice1
-    TargetNodeGUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
-  - BaseNodeGUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
-    PortName: Choice1
-    TargetNodeGUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
-  - BaseNodeGUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
+    TargetNodeGUID: dfcd60d6-7c16-4a6e-82ea-fd5391f00fcc
+  - BaseNodeGUID: dfcd60d6-7c16-4a6e-82ea-fd5391f00fcc
     PortName: Choice2
-    TargetNodeGUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
-  - BaseNodeGUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
-    PortName: Choice1
-    TargetNodeGUID: 3220fabb-20b0-4425-8823-a5f5f8e1da22
-  - BaseNodeGUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
-    PortName: Choice2
-    TargetNodeGUID: 3220fabb-20b0-4425-8823-a5f5f8e1da22
+    TargetNodeGUID: faae1a8b-b818-4a37-9020-3c3a5de233dd
   BishojyoNodeDatas:
-  - GUID: e19bbb4e-b4fb-4022-8129-c03764c7c3ca
+  - GUID: dfcd60d6-7c16-4a6e-82ea-fd5391f00fcc
     Slide:
       currentCharacter: 
       characterState: 0
@@ -44,8 +32,8 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 936.6667, y: 200}
-  - GUID: 3220fabb-20b0-4425-8823-a5f5f8e1da22
+    Position: {x: 281.33334, y: 160.66667}
+  - GUID: faae1a8b-b818-4a37-9020-3c3a5de233dd
     Slide:
       currentCharacter: 
       characterState: 0
@@ -57,30 +45,4 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 1176, y: 300}
-  - GUID: c1ec6e2f-552c-4d5a-a663-0756a13bb52d
-    Slide:
-      currentCharacter: 
-      characterState: 0
-      text: Bishojyo Node
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 356.66666, y: 327.3333}
-  - GUID: b232a1e2-6ccd-4075-a560-d14ffc4415b9
-    Slide:
-      currentCharacter: 
-      characterState: 0
-      text: Bishojyo Node
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 598.6667, y: 200}
+    Position: {x: 604, y: 160.66667}
