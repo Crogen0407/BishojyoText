@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5239c50f14564477b496508dfd69766c, type: 3}
+  m_Name: "\u3147"
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGUID: 88adcace-fe37-4422-b1b1-16a8368cc8fa
+    PortName: Next
+    TargetNodeGUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
+  - BaseNodeGUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
+    PortName: "\uB09C \uC288\uBD95"
+    TargetNodeGUID: 08f80de7-140e-4f23-b654-fcdb031edbe6
+  - BaseNodeGUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
+    PortName: "\uB09C \uD325\uBD95"
+    TargetNodeGUID: 954f7878-127a-4ac8-9a30-a1a57dc2e075
+  - BaseNodeGUID: 08f80de7-140e-4f23-b654-fcdb031edbe6
+    PortName: <Next>
+    TargetNodeGUID: 666eceb1-ce39-4706-8e4e-254c8e0c155c
+  - BaseNodeGUID: 954f7878-127a-4ac8-9a30-a1a57dc2e075
+    PortName: <Next>
+    TargetNodeGUID: 666eceb1-ce39-4706-8e4e-254c8e0c155c
+  - BaseNodeGUID: 666eceb1-ce39-4706-8e4e-254c8e0c155c
+    PortName: <Next>
+    TargetNodeGUID: 80be721b-5a03-4996-8565-5d293931ba54
+  - BaseNodeGUID: 80be721b-5a03-4996-8565-5d293931ba54
+    PortName: <Next>
+    TargetNodeGUID: bec13a3e-7b18-4148-b30b-3ff971724ffb
+  BishojyoNodeDatas:
+  - GUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
+    Slide:
+      currentCharacter: 
+      characterState: 0
+      text: 
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 253, y: 241}
+  - GUID: 08f80de7-140e-4f23-b654-fcdb031edbe6
+    Slide:
+      currentCharacter: "\uC2DC\uB85C\uCF54"
+      characterState: 0
+      text: "\uC120\uC0DD\uB2D8, \uC9C4\uC2EC\uC774\uC57C?"
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 609, y: 241}
+  - GUID: 954f7878-127a-4ac8-9a30-a1a57dc2e075
+    Slide:
+      currentCharacter: "\uC2DC\uB85C\uCF54"
+      characterState: 0
+      text: "\uC5ED\uC2DC \uC120\uC0DD\uB2D8\uC774\uB77C\uBA74 \uADF8\uB807\uAC8C
+        \uB9D0\uD560 \uC904 \uC54C\uC558\uC5B4."
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 609, y: 433}
+  - GUID: 666eceb1-ce39-4706-8e4e-254c8e0c155c
+    Slide:
+      currentCharacter: <user>
+      characterState: 0
+      text: "\uC77C\uB2E8... \uC2DC\uCF1C\uBCF4\uC790"
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 1034, y: 241}
+  - GUID: bec13a3e-7b18-4148-b30b-3ff971724ffb
+    Slide:
+      currentCharacter: "\uC2DC\uB85C\uCF54"
+      characterState: 0
+      text: "\uC751?"
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 1585, y: 241}
+  - GUID: 80be721b-5a03-4996-8565-5d293931ba54
+    Slide:
+      currentCharacter: <user>
+      characterState: 0
+      text: "\uC751? \uC2DC\uB85C\uCF54 \uC5B8\uC81C\uAE4C\uC9C0 \uADF8\uB807\uAC8C
+        \uC11C \uC788\uC744 \uAEBC\uC57C?"
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 1305, y: 241}
+  ExposedProperties: []

@@ -97,10 +97,18 @@ namespace Crogen.BishojyoGraph.Editor
             
             int outputPortCount = bishojyoNode.outputContainer.Query("connector").ToList().Count;
             generatePort.portName = $"Choice {outputPortCount}";
-
+            
             var choicePortName = string.IsNullOrEmpty(overriddenPortName)
                 ? $"Choice{outputPortCount + 1}"
                 : overriddenPortName;
+            
+            if (outputPortCount == 0)
+            {
+                choicePortName = string.IsNullOrEmpty(overriddenPortName)
+                    ? "<Next>"
+                    : overriddenPortName;
+            }
+            
 
             var textField = new TextField
             {

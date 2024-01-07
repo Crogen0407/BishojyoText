@@ -1,21 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Crogen.BishojyoGraph
 {
     public class StoryManager : MonoSingleton<StoryManager>
     {
         //Controllers
-        public SlideController SlideController { get; private set; }
         public CharacterController CharacterController { get; private set; }
+        public DataController DataController { get; private set; }
+        public TextController TextController { get; private set; }
 
         private void Init()
         {
-            SlideController = FindObjectOfType<SlideController>();
             CharacterController = FindObjectOfType<CharacterController>();
+            DataController = FindObjectOfType<DataController>();
+            TextController = FindObjectOfType<TextController>();
         }
 
         private void Awake()
@@ -29,22 +34,6 @@ namespace Crogen.BishojyoGraph
             {
                 Init();
             };
-        }
-
-        private void OnDestroy()
-        {
-        
-        }
-
-        private void Update()
-        {
-            // if (Input.GetMouseButtonDown(0))
-            // {
-            //     SlideController.CurrentSlide++;
-            //     CharacterController.ChangeCharacter(
-            //         SlideController.characterData.characters[SlideController.CurrentSlide].sprites,
-            //         CharacterState.Angry, Vector3.zero);
-            // }
         }
     }
 }
