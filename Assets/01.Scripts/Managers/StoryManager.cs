@@ -38,13 +38,13 @@ namespace Crogen.BishojyoGraph
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                SlideController.CurrentSlide++;
-                CharacterController.ChangeCharacter(
-                    SlideController.characterData.characters[SlideController.CurrentSlide].sprites,
-                    CharacterState.Angry, Vector3.zero);
-            }
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     SlideController.CurrentSlide++;
+            //     CharacterController.ChangeCharacter(
+            //         SlideController.characterData.characters[SlideController.CurrentSlide].sprites,
+            //         CharacterState.Angry, Vector3.zero);
+            // }
         }
     }
 }

@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5239c50f14564477b496508dfd69766c, type: 3}
-  m_Name: New Narrative
+  m_Name: story1
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGUID: 88adcace-fe37-4422-b1b1-16a8368cc8fa
+  - BaseNodeGUID: 5373b289-f275-464e-ba7c-223969466a0d
     PortName: Next
-    TargetNodeGUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
-  - BaseNodeGUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
-    PortName: Choice1
-    TargetNodeGUID: 08f80de7-140e-4f23-b654-fcdb031edbe6
+    TargetNodeGUID: 78cd2e04-ce39-462b-893f-fbae0cc39c32
   BishojyoNodeDatas:
-  - GUID: e5cfe16b-bf1b-4292-8636-6d54b9a79cfe
+  - GUID: 78cd2e04-ce39-462b-893f-fbae0cc39c32
     Slide:
       currentCharacter: 
       characterState: 0
@@ -32,18 +29,5 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 253.33333, y: 200}
-  - GUID: 08f80de7-140e-4f23-b654-fcdb031edbe6
-    Slide:
-      currentCharacter: 
-      characterState: 0
-      text: 
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 523.3333, y: 240.66667}
+    Position: {x: 243.33333, y: 200}
   ExposedProperties: []

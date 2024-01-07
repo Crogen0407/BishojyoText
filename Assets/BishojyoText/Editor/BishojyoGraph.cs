@@ -164,14 +164,30 @@ namespace Crogen.BishojyoGraph.Editor
             button.text = "New Choice";
             bishojyoNode.titleContainer.Add(button);
 
-            var textField = new TextField(string.Empty);
-            textField.RegisterValueChangedCallback(evt =>
+            var nameLabel = new Label("Name");
+            bishojyoNode.mainContainer.Add(nameLabel);
+
+            var textFieldforName = new TextField(string.Empty);
+            textFieldforName.RegisterValueChangedCallback(evt =>
+            {
+                bishojyoNode.Slide.currentCharacter = evt.newValue;
+            });
+            textFieldforName.SetValueWithoutNotify(bishojyoNode.Slide.currentCharacter);
+            bishojyoNode.mainContainer.Add(textFieldforName);
+            
+            var textLabel = new Label("Text");
+            bishojyoNode.mainContainer.Add(textLabel);
+            
+            var textFieldforStoryText = new TextField(string.Empty);
+            textFieldforStoryText.RegisterValueChangedCallback(evt =>
             {
                 bishojyoNode.Slide.text = evt.newValue;
                 bishojyoNode.title = evt.newValue;
             });
-            textField.SetValueWithoutNotify(bishojyoNode.Slide.text);
-            bishojyoNode.mainContainer.Add(textField);
+            textFieldforStoryText.SetValueWithoutNotify(bishojyoNode.Slide.text);
+            bishojyoNode.mainContainer.Add(textFieldforStoryText);
+            
+            
             
             bishojyoNode.RefreshExpandedState();
             bishojyoNode.RefreshPorts();
