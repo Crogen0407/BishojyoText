@@ -12,7 +12,9 @@ public class BishojyoDataController : MonoBehaviour
     public BishojyoContainer currentBishojyoContainer;
     
     public int currentStoryIndex;
-    
+    public int currentSlideIndex;
+    public bool isChoiceMode = false;
+
     //Managers
     private StoryManager _storyManager;
     
@@ -35,6 +37,7 @@ public class BishojyoDataController : MonoBehaviour
             currentStoryIndex = 0
         });
         currentBishojyoContainer = bishojyoContainers[_dataController.Load().currentStoryIndex];
+        LoadSlide();
     }
 
     public NodeLinkData[] LoadChoice()
@@ -42,33 +45,46 @@ public class BishojyoDataController : MonoBehaviour
         List<NodeLinkData> nodeLinkDatas = new List<NodeLinkData>();
 
         int index = 0;
-        string nodeName = currentBishojyoContainer.NodeLinks[currentStoryIndex].PortName;
-        while (nodeName == currentBishojyoContainer.NodeLinks[currentStoryIndex + index].PortName)
+        string nodeName = currentBishojyoContainer.NodeLinks[currentSlideIndex].PortName;
+        string nodeGUID = currentBishojyoContainer.NodeLinks[currentSlideIndex].BaseNodeGUID;
+        while (nodeGUID == currentBishojyoContainer.NodeLinks[currentSlideIndex + index].BaseNodeGUID && !nodeName.Equals("<next>") && !nodeName.Equals("Next"))
         {
-            nodeLinkDatas.Add(currentBishojyoContainer.NodeLinks[currentStoryIndex + index]);
-            index+=2;
+            nodeLinkDatas.Add(currentBishojyoContainer.NodeLinks[currentSlideIndex + index]);
+            index++;
         }
 
+        if (nodeLinkDatas.Count <= 0)
+        {
+            isChoiceMode = false;
+        }
+        else
+        {
+            isChoiceMode = true;
+        }
         return nodeLinkDatas.ToArray();
     }
     
     public void LoadSlide()
     {
-        Slide slide = currentBishojyoContainer.BishojyoNodeDatas[currentStoryIndex].Slide;
-        _textController.UpdateChatWindow(slide.currentCharacter, slide.text, LoadChoice());
+        Slide slide = currentBishojyoContainer.BishojyoNodeDatas[currentSlideIndex].Slide;
+        NodeLinkData[] choiceLinkDatas = LoadChoice();
+        _textController.UpdateChatWindow(slide.currentCharacter, slide.text, choiceLinkDatas);
     }
     
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _textController.textMakeComplete == true)
+        if (isChoiceMode == false)
         {
-            currentStoryIndex++;
-            LoadSlide();
-        }
-        else if(Input.GetKeyDown(KeyCode.Space) && _textController.textMakeComplete == false)
-        {
-            _textController.ChatSkip();
+            if (Input.GetKeyDown(KeyCode.Space) && _textController.textMakeComplete == true)
+            {
+                currentSlideIndex++;
+                LoadSlide();
+            }
+            else if(Input.GetKeyDown(KeyCode.Space) && _textController.textMakeComplete == false)
+            {
+                _textController.ChatSkip();
+            }
         }
     }
 }

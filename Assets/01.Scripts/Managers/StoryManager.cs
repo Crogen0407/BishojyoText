@@ -15,12 +15,14 @@ namespace Crogen.BishojyoGraph
         public CharacterController CharacterController { get; private set; }
         public DataController DataController { get; private set; }
         public TextController TextController { get; private set; }
+        public BishojyoDataController BishojyoDataController { get; private set; }
 
         private void Init()
         {
             CharacterController = FindObjectOfType<CharacterController>();
             DataController = FindObjectOfType<DataController>();
             TextController = FindObjectOfType<TextController>();
+            BishojyoDataController = FindObjectOfType<BishojyoDataController>();
         }
 
         private void Awake()

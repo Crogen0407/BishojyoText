@@ -105,7 +105,7 @@ namespace Crogen.BishojyoGraph.Editor
             if (outputPortCount == 0)
             {
                 choicePortName = string.IsNullOrEmpty(overriddenPortName)
-                    ? "<Next>"
+                    ? "<next>"
                     : overriddenPortName;
             }
             
