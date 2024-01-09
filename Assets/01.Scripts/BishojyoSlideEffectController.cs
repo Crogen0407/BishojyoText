@@ -7,28 +7,29 @@ using Crogen.Tweening;
 
 namespace Crogen.BishojyoGraph.SlideEffect
 {
-    public class BishojyoSlideEffectController : MonoBehaviour
+    public class BishojyoSlideEffectController : MonoSingleton<BishojyoSlideEffectController>
     {
-        private void Awake()
-        {
-            Tweening.Tweening.Instance.DOMove(transform, Vector3.one * 5, 10, EasingType.EaseInBounce);
-        }
-
-        public Image fadePanel;
         public void Fade(bool fadeType, float duration)
-        {
+        { 
+            Image fadePanel = new GameObject().AddComponent<Image>();
+            fadePanel.color = Color.black;
+
+            Transform rectTrm = fadePanel.transform;
+
+            rectTrm.localScale = Vector2.one * 20;
+            
             Image image = Instantiate(fadePanel, FindObjectOfType<Canvas>().transform);
-            image.color = new Color(0, 0, 0, Convert.ToInt32(fadeType));
-            StartCoroutine(FadeCoroutine(image, duration));
+            Color startColor = new Color(0, 0, 0, Convert.ToInt32(fadeType));
+            image.color = startColor;
+
+            Tweening.Tweening.Instance.DOColor(image, new Color(0, 0, 0, Convert.ToInt32(!fadeType)),  duration, FadeObjectDestroy(image),
+                EasingType.EaseInSine);
         }
 
-        private IEnumerator FadeCoroutine(Image fadeImage, float duration)
+        private IEnumerator FadeObjectDestroy(Image image)
         {
-            float startAlpha = fadeImage.color.a;
-
-            float currentTime = 0;
-            float percentTime = 0;
-            yield return new WaitForSeconds(1);
+            Destroy(image.gameObject);
+            yield return null;
         }
     }
 }

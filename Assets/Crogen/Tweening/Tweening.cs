@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using UnityEngine;
 using Crogen.Tweening;
+using UnityEngine.UI;
 
 namespace Crogen.Tweening
 {
@@ -82,19 +83,12 @@ namespace Crogen.Tweening
                 float percentTime = 0;
                 
                 Vector3 startPoint = rigidbody.position;
-                Type thisClassType = typeof(EaseTweeningCollection);
-                string funcName = easing.ToString();
-                MethodInfo easingFunc = thisClassType.GetMethod(funcName, BindingFlags.NonPublic | BindingFlags.Instance);
-                
                 
                 while (currentTime < duration)
                 {
                     currentTime += Time.deltaTime;
                     percentTime = currentTime / duration;
-                    if(easingFunc != null)
-                    {
-                        rigidbody.position = Vector3.Lerp(startPoint, endPoint, (float)(easingFunc.Invoke(this, new object[]{percentTime})));
-                    }
+                    transform.localPosition = Vector3.Lerp(startPoint, endPoint, new EaseTweeningCollection().SetEase(easing, percentTime));
                     yield return null;
                 }
                 rigidbody.position = endPoint;
@@ -103,9 +97,69 @@ namespace Crogen.Tweening
             }
         #endregion
 
-        // public void Fade<T>(T target, float endPoint, float duration, EasingType easing) where T : 
-        // {
-        //     
-        // }
+        //for Renderers
+        public IEnumerator DOColor(Renderer target, Color endPoint, float duration, EasingType easing)
+        {
+            float currentTime = 0;
+            float percentTime = 0;
+                
+            Color startPoint = target.material.color;
+                
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                percentTime = currentTime / duration;
+                target.material.color = Color.Lerp(startPoint, endPoint, new EaseTweeningCollection().SetEase(easing, percentTime));
+                yield return null;
+            }        
+            target.material.color = endPoint;
+        }
+
+        public void DOColor(Image image, Color endPoint, float duration, EasingType easing)
+        {
+            StartCoroutine(ChangeColor(image, endPoint, duration, easing));
+        }
+        
+        private IEnumerator ChangeColor(Image image, Color endPoint, float duration, EasingType easing)
+        {
+            float currentTime = 0;
+            float percentTime = 0;
+
+            Color startColor = image.color;
+            
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                percentTime = currentTime / duration;
+                image.color = Color.Lerp(startColor, endPoint, new EaseTweeningCollection().SetEase(easing, percentTime));
+                yield return null;
+            }        
+            image.color = endPoint;
+        }
+        
+        public void DOColor(Image image, Color endPoint, float duration, IEnumerator lateCoroutine, EasingType easing)
+        {
+            StartCoroutine(ChangeColor(image, endPoint, duration, lateCoroutine, easing));
+        }
+        
+        private IEnumerator ChangeColor(Image image, Color endPoint, float duration, IEnumerator lateCoroutine, EasingType easing)
+        {
+            float currentTime = 0;
+            float percentTime = 0;
+
+            Color startColor = image.color;
+            
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                percentTime = currentTime / duration;
+                image.color = Color.Lerp(startColor, endPoint, new EaseTweeningCollection().SetEase(easing, percentTime));
+                yield return null;
+            }        
+            image.color = endPoint;
+
+            yield return new WaitForSeconds(duration);
+            yield return StartCoroutine(lateCoroutine);
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Crogen.BishojyoGraph.SlideEffect;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Crogen.BishojyoGraph
 
         private void Init()
         {
+            BishojyoSlideEffectController.Instance.Fade(true, 1);
             CharacterController = FindObjectOfType<CharacterController>();
             DataController = FindObjectOfType<DataController>();
             TextController = FindObjectOfType<TextController>();
