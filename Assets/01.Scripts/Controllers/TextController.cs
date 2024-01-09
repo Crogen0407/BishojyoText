@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Crogen.BishojyoGraph;
 using Crogen.BishojyoGraph.RunTime;
 using TMPro;
@@ -103,7 +101,6 @@ public class TextController : MonoBehaviour
         for (int i = 0; i < nodeLinkDatas.Length; i++)
         {
             GameObject obj = Instantiate(choicePanelPrefab, choiceGroup);
-            Debug.Log(i);
             int index = nodeLinkDatas.Length - i;
             obj.GetComponent<Button>().onClick.AddListener(() =>
             {

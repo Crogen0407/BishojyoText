@@ -31,10 +31,13 @@ MonoBehaviour:
   - BaseNodeGUID: 2745c7aa-454b-479f-ad03-1d2e6886018a
     PortName: "\uC544\uB2D8 \uC790\uC0B4\uD560 \uAEBC\uC57C"
     TargetNodeGUID: 2d324495-8a43-41bf-b94b-d833243507d8
-  - BaseNodeGUID: cc0238fe-d084-4bfc-ab4a-b0f32dd2696f
+  - BaseNodeGUID: 2d324495-8a43-41bf-b94b-d833243507d8
     PortName: <next>
     TargetNodeGUID: afaddafe-53bf-42d8-9fc5-d229a65810a2
-  - BaseNodeGUID: 2d324495-8a43-41bf-b94b-d833243507d8
+  - BaseNodeGUID: cc0238fe-d084-4bfc-ab4a-b0f32dd2696f
+    PortName: <next>
+    TargetNodeGUID: 941fcd1f-1c95-4f9d-9db6-04e44c139e83
+  - BaseNodeGUID: 941fcd1f-1c95-4f9d-9db6-04e44c139e83
     PortName: <next>
     TargetNodeGUID: afaddafe-53bf-42d8-9fc5-d229a65810a2
   BishojyoNodeDatas:
@@ -90,19 +93,6 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls: []
     Position: {x: 1411.3334, y: 200}
-  - GUID: cc0238fe-d084-4bfc-ab4a-b0f32dd2696f
-    Slide:
-      currentCharacter: "\uC2DC\uB85C\uCF54"
-      characterState: 0
-      text: "\uC54C\uACA0\uC5B4\uC694"
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 1753.3334, y: 31.999998}
   - GUID: 2d324495-8a43-41bf-b94b-d833243507d8
     Slide:
       currentCharacter: "\uC2DC\uB85C\uCF54"
@@ -128,5 +118,32 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 2068, y: 126.666664}
+    Position: {x: 2488, y: 126.666664}
+  - GUID: cc0238fe-d084-4bfc-ab4a-b0f32dd2696f
+    Slide:
+      currentCharacter: "\uC2DC\uB85C\uCF54"
+      characterState: 0
+      text: "\uC54C\uACA0\uC5B4\uC694"
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 1782.6666, y: 28.666666}
+  - GUID: 941fcd1f-1c95-4f9d-9db6-04e44c139e83
+    Slide:
+      currentCharacter: "\uC2DC\uB85C\uCF54"
+      characterState: 0
+      text: "\uB300\uC2E0 \uC774\uB530 \uB0B4\uAC00 \uB180\uC544\uB2EC\uB77C\uACE0
+        \uD560 \uB54C \uAD70\uB9D0 \uC5C6\uC774 \uB530\uB77C\uC918"
+      slideEvent:
+        onSlideEnable:
+          m_PersistentCalls:
+            m_Calls: []
+        onSlideDisable:
+          m_PersistentCalls:
+            m_Calls: []
+    Position: {x: 2032.6666, y: 28.666666}
   ExposedProperties: []
