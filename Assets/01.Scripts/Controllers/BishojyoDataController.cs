@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Crogen.BishojyoGraph;
 using Crogen.BishojyoGraph.RunTime;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BishojyoDataController : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class BishojyoDataController : MonoBehaviour
     [SerializeField] private List<BishojyoContainer> bishojyoContainers;
     public BishojyoContainer currentBishojyoContainer;
     
-    [SerializeField] private List<NodeLinkData> _nodeLinkDatas;
+    public List<NodeLinkData> nodeLinkDatas;
     [SerializeField] private List<BishojyoNodeData> _bishojyoNodeDatas;
     
     //[SerializeField] private List<NodeLinkData> _currentNodeLinkDatas;
@@ -48,12 +50,12 @@ public class BishojyoDataController : MonoBehaviour
 
         
         //List Setting
-        _nodeLinkDatas = new List<NodeLinkData>();
+        nodeLinkDatas = new List<NodeLinkData>();
         _bishojyoNodeDatas = new List<BishojyoNodeData>();
 
         foreach (var item in  currentBishojyoContainer.NodeLinks)
         {
-            _nodeLinkDatas.Add(item);
+            nodeLinkDatas.Add(item);
         }
         foreach (var item in   currentBishojyoContainer.BishojyoNodeDatas)
         {
@@ -68,7 +70,7 @@ public class BishojyoDataController : MonoBehaviour
     {
         List<string> outputGUID = new List<string>();
 
-        foreach (var nodeLinkData in _nodeLinkDatas)
+        foreach (var nodeLinkData in nodeLinkDatas)
         {
             if (nodeLinkData.BaseNodeGUID == baseGUID)
             {
@@ -79,10 +81,11 @@ public class BishojyoDataController : MonoBehaviour
         return outputGUID.ToArray();
     }
     
-    private void LoadSlide()
+    public void LoadSlide()
     {
-        string[] choiceGUID = GetTargetGUIDArray(_nodeLinkDatas[currentSlideIndex].BaseNodeGUID);
-
+        isChoiceMode = false;
+        string[] choiceGUID = GetTargetGUIDArray(nodeLinkDatas[currentSlideIndex].BaseNodeGUID);
+        
         for (int i = 0; i < choiceGUID.Length; i++)
         {
             Debug.Log(choiceGUID[i]);
@@ -96,24 +99,27 @@ public class BishojyoDataController : MonoBehaviour
                 {
                     _currentBishojyoNodeDatas.Add(bishojyoNodeData);
                     _bishojyoNodeDatas.Remove(bishojyoNodeData);
+                    _textController.UpdateChatWindow(bishojyoNodeData.Slide.currentCharacter, bishojyoNodeData.Slide.text);
+                    currentChoiceGUID = string.Empty;
                     break;
                 }
             }
         }
         else
         {
-            LoadChoice(choiceGUID);
+            _textController.UpdateChoicePanel(LoadChoice(choiceGUID));
         }
     }
 
+    public string currentChoiceGUID;
     private NodeLinkData[] LoadChoice(string[] choiceGUID)
     {
-        List<NodeLinkData> nodeLinkDatas = new List<NodeLinkData>();
+        List<NodeLinkData> nodeLinkDatas = new List<NodeLinkData>();   
         
         isChoiceMode = true;
         for (int i = 0; i < choiceGUID.Length; i++)
         {
-            foreach (var nodeLinkData in _nodeLinkDatas)
+            foreach (var nodeLinkData in this.nodeLinkDatas)
             {
                 if (nodeLinkData.TargetNodeGUID == choiceGUID[i])
                 {
@@ -127,12 +133,34 @@ public class BishojyoDataController : MonoBehaviour
         return nodeLinkDatas.ToArray();
     }
 
+    public void DeleteChoice(string exceptTargetGUID)
+    {
+        string baseGUID = string.Empty;
+        foreach (var nodeLinkData in nodeLinkDatas)
+        {
+            if (nodeLinkData.TargetNodeGUID == exceptTargetGUID)
+            {
+                baseGUID = nodeLinkData.BaseNodeGUID;
+                break;
+            }
+        }
+
+        nodeLinkDatas.Remove(nodeLinkDatas.Single(s=> s.BaseNodeGUID == baseGUID && s.TargetNodeGUID != exceptTargetGUID));
+    }
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isChoiceMode == false)
         {
-            currentSlideIndex++;
-            LoadSlide();
+            if (_textController.textMakeComplete == true)
+            {
+                currentSlideIndex++;
+                LoadSlide();
+            }
+            else if(_textController.textMakeComplete == false)
+            {
+                _textController.ChatSkip();
+            }
         }
     }
 }

@@ -33,22 +33,14 @@ public class TextController : MonoBehaviour
         _nameText = characterNameTag.transform.Find("Text").GetComponent<TextMeshProUGUI>();
     }
         
-    public void UpdateChatWindow(string name, string text, NodeLinkData[] nodeLinkDatas, float chatDelay = 0.1f)
+    public void UpdateChatWindow(string name, string text, float chatDelay = 0.1f)
     {
-        if (nodeLinkDatas.Length <= 0)
-        {
-            chatWindow.gameObject.SetActive(true);
-            textMakeComplete = false;
-            _nameText.text = name;
-            _name = name;
-            _text = text;
-            StartCoroutine(UpdateChatWindowCoroutine(text, chatDelay));
-        }
-        else
-        {
-            chatWindow.gameObject.SetActive(false);
-            UpdateChoicePanel(nodeLinkDatas);
-        }
+        chatWindow.gameObject.SetActive(true);
+        textMakeComplete = false;
+        _nameText.text = name;
+        _name = name;
+        _text = text;
+        StartCoroutine(UpdateChatWindowCoroutine(text, chatDelay));
         
     }
 
@@ -87,8 +79,10 @@ public class TextController : MonoBehaviour
         _storyText.text = text;
     }
 
-    private void UpdateChoicePanel(NodeLinkData[] nodeLinkDatas)
+    public void UpdateChoicePanel(NodeLinkData[] nodeLinkDatas)
     {
+        chatWindow.gameObject.SetActive(false);
+
         int childrenCount = choiceGroup.GetComponentsInChildren<Image>().Length;
 
         Image[] images = choiceGroup.GetComponentsInChildren<Image>();
@@ -97,19 +91,19 @@ public class TextController : MonoBehaviour
             Destroy(images[i].gameObject);
         }
 
-        //여기 수정해야 함
-        for (int i = 0; i < nodeLinkDatas.Length; i++)
+        foreach (var item in nodeLinkDatas)
         {
             GameObject obj = Instantiate(choicePanelPrefab, choiceGroup);
-            int index = nodeLinkDatas.Length - i;
             obj.GetComponent<Button>().onClick.AddListener(() =>
             {
                 BishojyoDataController bishojyoDataController;
                 bishojyoDataController = _storyManager.BishojyoDataController;
-                Debug.Log(index);
-                bishojyoDataController.currentSlideIndex += index;
+               
+                bishojyoDataController.DeleteChoice(item.TargetNodeGUID);
+                bishojyoDataController.LoadSlide();
+                bishojyoDataController.isChoiceMode = false;
             });
-            obj.transform.GetComponentInChildren<TextMeshProUGUI>().text = nodeLinkDatas[i].PortName;
+            obj.transform.GetComponentInChildren<TextMeshProUGUI>().text = item.PortName;
         }
     }
 }
