@@ -14,8 +14,9 @@ public class BishojyoDataController : MonoBehaviour
     [SerializeField] private List<NodeLinkData> _nodeLinkDatas;
     [SerializeField] private List<BishojyoNodeData> _bishojyoNodeDatas;
     
-    [SerializeField] private List<NodeLinkData> _currentNodeLinkDatas;
+    //[SerializeField] private List<NodeLinkData> _currentNodeLinkDatas;
     [SerializeField] private List<BishojyoNodeData> _currentBishojyoNodeDatas;
+    public NodeLinkData[] _currentChoices;
     
     public int currentStoryIndex;
     public int currentSlideIndex;
@@ -44,83 +45,94 @@ public class BishojyoDataController : MonoBehaviour
             currentStoryIndex = 0
         });
         currentBishojyoContainer = bishojyoContainers[_dataController.Load().currentStoryIndex];
-        _nodeLinkDatas = currentBishojyoContainer.NodeLinks;
-        _bishojyoNodeDatas = currentBishojyoContainer.BishojyoNodeDatas;
-        CallbackSlide(); 
+
+        
+        //List Setting
+        _nodeLinkDatas = new List<NodeLinkData>();
+        _bishojyoNodeDatas = new List<BishojyoNodeData>();
+
+        foreach (var item in  currentBishojyoContainer.NodeLinks)
+        {
+            _nodeLinkDatas.Add(item);
+        }
+        foreach (var item in   currentBishojyoContainer.BishojyoNodeDatas)
+        {
+            _bishojyoNodeDatas.Add(item);
+        }
+        
         LoadSlide();
     }
 
-    public NodeLinkData[] LoadChoice()
+
+    private string[] GetTargetGUIDArray(string baseGUID)
     {
-        List<NodeLinkData> nodeLinkDatas = new List<NodeLinkData>();
-        
-        int index = 0;
-        string nodeName = _currentNodeLinkDatas[currentSlideIndex].PortName;
-        string nodeGUID = _currentNodeLinkDatas[currentSlideIndex].BaseNodeGUID;
-        while (nodeGUID == _currentNodeLinkDatas[currentSlideIndex + index].BaseNodeGUID && !nodeName.Equals("<next>") && !nodeName.Equals("Next"))
+        List<string> outputGUID = new List<string>();
+
+        foreach (var nodeLinkData in _nodeLinkDatas)
         {
-            nodeLinkDatas.Add(_currentNodeLinkDatas[currentSlideIndex + index]);
-            index++;
+            if (nodeLinkData.BaseNodeGUID == baseGUID)
+            {
+                outputGUID.Add(nodeLinkData.TargetNodeGUID);
+            }
         }
 
-        if (nodeLinkDatas.Count <= 0)
+        return outputGUID.ToArray();
+    }
+    
+    private void LoadSlide()
+    {
+        string[] choiceGUID = GetTargetGUIDArray(_nodeLinkDatas[currentSlideIndex].BaseNodeGUID);
+
+        for (int i = 0; i < choiceGUID.Length; i++)
         {
-            isChoiceMode = false;
+            Debug.Log(choiceGUID[i]);
+        }
+        
+        if (choiceGUID.Length == 1)
+        {
+            foreach (var bishojyoNodeData in _bishojyoNodeDatas)
+            {
+                if (bishojyoNodeData.GUID == choiceGUID[0])
+                {
+                    _currentBishojyoNodeDatas.Add(bishojyoNodeData);
+                    _bishojyoNodeDatas.Remove(bishojyoNodeData);
+                    break;
+                }
+            }
         }
         else
         {
-            isChoiceMode = true;
+            LoadChoice(choiceGUID);
         }
+    }
+
+    private NodeLinkData[] LoadChoice(string[] choiceGUID)
+    {
+        List<NodeLinkData> nodeLinkDatas = new List<NodeLinkData>();
+        
+        isChoiceMode = true;
+        for (int i = 0; i < choiceGUID.Length; i++)
+        {
+            foreach (var nodeLinkData in _nodeLinkDatas)
+            {
+                if (nodeLinkData.TargetNodeGUID == choiceGUID[i])
+                {
+                    nodeLinkDatas.Add(nodeLinkData);
+                    Debug.Log(nodeLinkData.PortName);
+                    break;
+                }
+            }
+        }
+
         return nodeLinkDatas.ToArray();
     }
 
-    private void CallbackSlide()
-    {
-        _currentNodeLinkDatas.Add(_nodeLinkDatas[0]);
-        _nodeLinkDatas.Remove(_nodeLinkDatas[0]);
-        int index = 0;
-        for (int i = 0; i < _nodeLinkDatas.Count;)
-        {
-            if (_currentNodeLinkDatas[index].TargetNodeGUID == _nodeLinkDatas[i].BaseNodeGUID)
-            {
-                _currentNodeLinkDatas.Add(_nodeLinkDatas[i]);
-                _nodeLinkDatas.RemoveAt(i);
-                break;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        
-        // while (_nodeLinkDatas[index].BaseNodeGUID != _nodeLinkDatas[index + 1].BaseNodeGUID)
-        // {
-        //     _currentNodeLinkDatas.Add(_nodeLinkDatas[index]);
-        //     index++;
-        // }
-    }
-    
-    public void LoadSlide()
-    {
-        Slide slide = _bishojyoNodeDatas[currentSlideIndex].Slide;
-        NodeLinkData[] choiceLinkDatas = LoadChoice();
-        _textController.UpdateChatWindow(slide.currentCharacter, slide.text, choiceLinkDatas);
-    }
-    
-    
     private void Update()
     {
-        if (isChoiceMode == false)
+        if (Input.GetKeyDown(KeyCode.Space) && isChoiceMode == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _textController.textMakeComplete == true)
-            {
-                currentSlideIndex++;
-                LoadSlide();
-            }
-            else if(Input.GetKeyDown(KeyCode.Space) && _textController.textMakeComplete == false)
-            {
-                _textController.ChatSkip();
-            }
+            currentSlideIndex++;
+            LoadSlide();
         }
     }
 }

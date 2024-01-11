@@ -108,7 +108,6 @@ public class TextController : MonoBehaviour
                 bishojyoDataController = _storyManager.BishojyoDataController;
                 Debug.Log(index);
                 bishojyoDataController.currentSlideIndex += index;
-                bishojyoDataController.LoadSlide();
             });
             obj.transform.GetComponentInChildren<TextMeshProUGUI>().text = nodeLinkDatas[i].PortName;
         }

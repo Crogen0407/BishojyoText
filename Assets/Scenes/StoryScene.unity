@@ -1692,58 +1692,15 @@ MonoBehaviour:
   bishojyoContainers:
   - {fileID: 11400000, guid: 79776f3554b104042a6f5158fa58aeb5, type: 2}
   currentBishojyoContainer: {fileID: 0}
-  _nodeLinkDatas:
-  - BaseNodeGUID: 
-    PortName: 
-    TargetNodeGUID: 
-  _bishojyoNodeDatas:
-  - GUID: 
-    Slide:
-      currentCharacter: 
-      characterState: 0
-      text: 
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 0, y: 0}
-  - GUID: 
-    Slide:
-      currentCharacter: 
-      characterState: 0
-      text: 
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 0, y: 0}
-  _currentNodeLinkDatas:
-  - BaseNodeGUID: 
-    PortName: 
-    TargetNodeGUID: 
-  _currentBishojyoNodeDatas:
-  - GUID: 
-    Slide:
-      currentCharacter: 
-      characterState: 0
-      text: 
-      slideEvent:
-        onSlideEnable:
-          m_PersistentCalls:
-            m_Calls: []
-        onSlideDisable:
-          m_PersistentCalls:
-            m_Calls: []
-    Position: {x: 0, y: 0}
+  _nodeLinkDatas: []
+  _bishojyoNodeDatas: []
+  _currentNodeLinkDatas: []
+  _currentBishojyoNodeDatas: []
+  _currentChoices: []
   currentStoryIndex: 0
   currentSlideIndex: 0
   isChoiceMode: 0
+  maxStoryCount: 0
 --- !u!4 &1937826170
 Transform:
   m_ObjectHideFlags: 0
