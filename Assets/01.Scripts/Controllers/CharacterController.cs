@@ -5,22 +5,34 @@ namespace Crogen.BishojyoGraph
 {
     public class CharacterController : MonoBehaviour
     {
-        private Transform _characterTransform;
+        public Transform characterTransform;
         private SpriteRenderer _characterSpriteRenderer;
-
+        [SerializeField] private SO_CharacterData _characterData;
         private void Awake()
         {
-            _characterTransform = GameObject.Find("Character").transform;
-            _characterSpriteRenderer = _characterTransform.GetComponent<SpriteRenderer>();
+            characterTransform = GameObject.Find("Character").transform;
+            _characterSpriteRenderer = characterTransform.GetComponent<SpriteRenderer>();
         }
 
-        public void ChangeCharacter(CharacterSprite characterSprite, CharacterState characterState, Vector3 position)
+        public void ChangeCharacter(string characterName, CharacterState characterState, Vector3 position)
         {
-            _characterTransform.position = position;
-            Debug.Log(typeof(CharacterSprite).GetProperties().Length);
-            for (int i = 0; i < typeof(CharacterSprite).GetProperties().Length; i++)
+            characterTransform.position = position;
+            Character currentCharacter = null;
+            foreach (var character in _characterData.characters)
             {
-                
+                if (character.name == characterName)
+                {
+                    currentCharacter = character;
+                }
+            }
+
+            foreach (var characterSprite in currentCharacter.sprites.characterSpriteGroups)
+            {
+                if (characterSprite.characterState == characterState)
+                {
+                    _characterSpriteRenderer.sprite = characterSprite.sprite;
+                    break;
+                }
             }
         }
     }

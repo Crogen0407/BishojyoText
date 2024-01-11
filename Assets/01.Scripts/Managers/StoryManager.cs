@@ -20,7 +20,6 @@ namespace Crogen.BishojyoGraph
 
         private void Init()
         {
-            BishojyoSlideEffectController.Instance.Fade(true, 1);
             CharacterController = FindObjectOfType<CharacterController>();
             DataController = FindObjectOfType<DataController>();
             TextController = FindObjectOfType<TextController>();

@@ -11,43 +11,29 @@ namespace Crogen.BishojyoGraph
     public class SO_CharacterData : ScriptableObject
     {
         public List<Character> characters;
-    
-        public void ChangeCharacterState(string characterName, CharacterState characterState)
-        {
-            for (int i = 0; i < characters.Count; i++)
-            {
-                if (characters[i].name.Equals(characterName))
-                {
-                    characters[i].characterState = characterState;
-                    break;
-                }
-            }
-        }
     }
 
     [Serializable]
     public class Character
     {
         public string name;
-        public CharacterState characterState;
         public Color mainColor;
         public Vector3 position;
         public CharacterSprite sprites;
     }
 
     [Serializable]
-    public class CharacterSprite
+    public struct CharacterSprite
     {
-        public Sprite normal;
-        public Sprite angry;
-        public Sprite sad;
-        public Sprite ashamed;
-        public Sprite happy;
-        public Sprite jealousy;
-        public Sprite mischievous;
-        public Sprite thoughtful;
-        public Sprite refreshed;
-        public Sprite scared;
+        public List<CharacterSpriteGroup> characterSpriteGroups;
     }
+    
+    [Serializable]
+    public struct CharacterSpriteGroup
+    {
+        public CharacterState characterState;
+        public Sprite sprite;
+    }
+    
 }
 

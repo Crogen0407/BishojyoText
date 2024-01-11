@@ -193,7 +193,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 0.4
+  m_PlaneDistance: 7.86
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.76100624, b: 0.76100624, a: 1}
+  m_Color: {r: 1, g: 0.7607843, b: 0.7607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1645,6 +1645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19ce7fb9174453e97827ee8d03a574a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterTransform: {fileID: 1712538595}
+  _characterData: {fileID: 11400000, guid: 2d3b3c4c2d38a3246951d49f3aec1c76, type: 2}
 --- !u!4 &1787590908
 Transform:
   m_ObjectHideFlags: 0
@@ -1691,16 +1693,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bishojyoContainers:
   - {fileID: 11400000, guid: 79776f3554b104042a6f5158fa58aeb5, type: 2}
-  currentBishojyoContainer: {fileID: 0}
-  _nodeLinkDatas: []
+  nodeLinkDatas: []
   _bishojyoNodeDatas: []
-  _currentNodeLinkDatas: []
   _currentBishojyoNodeDatas: []
-  _currentChoices: []
   currentStoryIndex: 0
   currentSlideIndex: 0
   isChoiceMode: 0
-  maxStoryCount: 0
+  _isEndStory: 0
 --- !u!4 &1937826170
 Transform:
   m_ObjectHideFlags: 0

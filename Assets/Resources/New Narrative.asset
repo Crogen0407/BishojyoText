@@ -66,7 +66,7 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 675.3333, y: 200}
+    Position: {x: 675, y: 200}
   - GUID: 8185cafa-91a0-4b3b-95e8-901c70f7f748
     Slide:
       currentCharacter: <user>
@@ -92,7 +92,7 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 1411.3334, y: 200}
+    Position: {x: 1411, y: 200}
   - GUID: 2d324495-8a43-41bf-b94b-d833243507d8
     Slide:
       currentCharacter: "\uC2DC\uB85C\uCF54"
@@ -105,7 +105,7 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 1753.3334, y: 273.3333}
+    Position: {x: 1753, y: 273}
   - GUID: afaddafe-53bf-42d8-9fc5-d229a65810a2
     Slide:
       currentCharacter: <user>
@@ -118,7 +118,7 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 2488, y: 126.666664}
+    Position: {x: 2488, y: 127}
   - GUID: cc0238fe-d084-4bfc-ab4a-b0f32dd2696f
     Slide:
       currentCharacter: "\uC2DC\uB85C\uCF54"
@@ -131,7 +131,7 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 1782.6666, y: 28.666666}
+    Position: {x: 1783, y: 29}
   - GUID: 941fcd1f-1c95-4f9d-9db6-04e44c139e83
     Slide:
       currentCharacter: "\uC2DC\uB85C\uCF54"
@@ -145,5 +145,5 @@ MonoBehaviour:
         onSlideDisable:
           m_PersistentCalls:
             m_Calls: []
-    Position: {x: 2032.6666, y: 28.666666}
+    Position: {x: 2033, y: 29}
   ExposedProperties: []
