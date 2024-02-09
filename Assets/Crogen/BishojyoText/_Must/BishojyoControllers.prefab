@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &81081817682789881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81081817682789883}
+  - component: {fileID: 81081817682789880}
+  - component: {fileID: 3214839511632127592}
+  - component: {fileID: 1182222401418558845}
+  - component: {fileID: 7919912940392079208}
+  - component: {fileID: 5252997483161160981}
+  - component: {fileID: 6393307637423680257}
+  m_Layer: 0
+  m_Name: BishojyoControllers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &81081817682789883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &81081817682789880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0210972e533f14da89ee1248d343a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bishojyoContainers:
+  - {fileID: 11400000, guid: 79776f3554b104042a6f5158fa58aeb5, type: 2}
+  nodeLinkDatas: []
+  _bishojyoNodeDatas: []
+  _currentBishojyoNodeDatas: []
+  currentStoryIndex: 0
+  currentSlideIndex: 0
+  isChoiceMode: 0
+  _isEndStory: 0
+--- !u!114 &3214839511632127592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19ce7fb9174453e97827ee8d03a574a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTransform: {fileID: 0}
+  _characterData: {fileID: 11400000, guid: 2d3b3c4c2d38a3246951d49f3aec1c76, type: 2}
+--- !u!114 &1182222401418558845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4334359b6ea40244b1d57c7ae1453bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatWindow: {fileID: 0}
+  characterNameTag: {fileID: 0}
+  textMakeComplete: 0
+  choiceGroup: {fileID: 0}
+  choicePanelPrefab: {fileID: 7350827498090063726, guid: 8eff645c20f61e24cbfc23bc695d2656, type: 3}
+  _name: 
+  _text: 
+--- !u!114 &7919912940392079208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7231f19341944247b85661b65760cceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTextComplete: 0
+--- !u!114 &5252997483161160981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f43e9daf024cdd88981084570c9580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6393307637423680257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81081817682789881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec4124919f1c3347ad27c17244811c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
